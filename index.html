@@ -21,7 +21,7 @@
   <script>
   function allowDrop(ev) {
     ev.preventDefault();
-    var beingDragged = document.getElementById(ev.dataTransfer.getData("text"));
+    var beingDragged = document.getElementById(ev.dataTransfer.getData("dragged-element-id"));
     if(beingDragged != null && beingDragged != ev.target)
     {
       targetChildren = Array.prototype.slice.call(ev.target.children);
@@ -51,12 +51,12 @@
 
   function drag(ev) {
     ev.target.id = "currently-being-dragged";
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("dragged-element-id", ev.target.id);
   }
 
   function drop(ev) {
       ev.preventDefault();
-      var data = ev.dataTransfer.getData("text");
+      var data = ev.dataTransfer.getData("dragged-element-id");
       var beingDragged = document.getElementById(data);
       if(beingDragged != null)
       {
