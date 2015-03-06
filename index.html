@@ -18,6 +18,11 @@
   <script>
   function allowDrop(ev) {
     ev.preventDefault();
+    var beingDragged = document.getElementById(ev.dataTransfer.getData("text"));
+    if(beingDragged != null && beingDragged != ev.target)
+    {
+      ev.target.appendChild(beingDragged);
+    }
   }
 
   function drag(ev) {
