@@ -21,7 +21,7 @@
   <script>
   function allowDrop(ev) {
     ev.preventDefault();
-    var beingDragged = document.getElementById(ev.dataTransfer.getData("dragged-element-id"));
+    var beingDragged = document.getElementById("currently-being-dragged");
     if(beingDragged != null && beingDragged != ev.target)
     {
       targetChildren = Array.prototype.slice.call(ev.target.children);
