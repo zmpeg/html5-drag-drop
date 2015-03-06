@@ -34,13 +34,13 @@
       }
       else
       {
-        targetChildren.forEach(function(child) {
+        targetChildren.forEach(function(child, index) {
           childBox = child.getBoundingClientRect();
-          if(childBox.left > ev.pageX)
+          if(childBox.right > ev.pageX)
           {
             ev.target.insertBefore(beingDragged, child);
           }
-          if(childBox.right < ev.pageX)
+          if(childBox.right < ev.pageX && index == (targetChildren.length -1))
           {
             child.insertAdjacentElement('afterend', beingDragged);
           }
