@@ -14,6 +14,9 @@
     height:500px;
     border: 5px solid red;
   }
+  .green {
+    border: 5px solid green !important;
+  }
   </style>
   <script>
   function allowDrop(ev) {
@@ -21,7 +24,26 @@
     var beingDragged = document.getElementById(ev.dataTransfer.getData("text"));
     if(beingDragged != null && beingDragged != ev.target)
     {
-      ev.target.appendChild(beingDragged);
+      targetChildren = Array.prototype.slice.call(ev.target.children);
+      targetChildren.filter(function(child) {
+        child == beingDragged
+      });
+      if(targetChildren.length == 0)
+      {
+        ev.target.appendChild(beingDragged);
+      }
+      else
+      {
+        targetChildren.forEach(function(child) {
+          childBox = child.getBoundingClientRect();
+          console.log(childBox.left, ev.pageX);
+          if(childBox.left > ev.pageX)
+          {
+            console.log("sticking before", ev.target, beingDragged, child);
+            ev.target.insertBefore(beingDragged, child);
+          }
+        });
+      }
     }
   }
 
@@ -44,12 +66,12 @@
       }
 
   }
+
   </script>
   </head>
   <body>
     <div id="container" ondragover="allowDrop(event)" ondrop="drop(event)">
-      <div draggable="true"></div>
-      <div draggable="true"></div>
+      <div class='green' draggable="true"></div>
       <div draggable="true"></div>
       <div draggable="true"></div>
     </div>
