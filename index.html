@@ -36,11 +36,13 @@
       {
         targetChildren.forEach(function(child) {
           childBox = child.getBoundingClientRect();
-          console.log(childBox.left, ev.pageX);
           if(childBox.left > ev.pageX)
           {
-            console.log("sticking before", ev.target, beingDragged, child);
             ev.target.insertBefore(beingDragged, child);
+          }
+          if(childBox.right < ev.pageX)
+          {
+            child.insertAdjacentElement('afterend', beingDragged);
           }
         });
       }
