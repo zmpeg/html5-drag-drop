@@ -12,12 +12,13 @@
   </style>
   <script>
   function allowDrop(ev) {
-      ev.preventDefault();
+    console.log('droppable here');
+    ev.preventDefault();
   }
 
   function drag(ev) {
     console.log(ev.target.id)
-      ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("text", ev.target.id);
   }
 
   function drop(ev) {
@@ -28,8 +29,8 @@
   </script>
   </head>
   <body>
-    <div id="one" draggable="true" ondragstart="drag(event)"></div>
-    <div id="two" draggable="true" ondragstart="drag(event)"></div>
-    <div id="three" draggable="true" ondragstart="drag(event)"></div>
+    <div id="one" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)"></div>
+    <div id="two" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)"></div>
+    <div id="three" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)"></div>
   </body>
 </html>
