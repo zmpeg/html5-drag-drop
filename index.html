@@ -29,8 +29,14 @@
       ev.preventDefault();
       var data = ev.dataTransfer.getData("text");
       var beingDragged = document.getElementById(data);
-      ev.target.appendChild(beingDragged);
-      beingDragged.id = "";
+      if(beingDragged != null)
+      {
+        if(beingDragged != ev.target)
+        {
+          ev.target.appendChild(beingDragged);
+        }
+        beingDragged.id = "";
+      }
 
   }
   </script>
