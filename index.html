@@ -17,12 +17,10 @@
   </style>
   <script>
   function allowDrop(ev) {
-    console.log('droppable here');
     ev.preventDefault();
   }
 
   function drag(ev) {
-    console.log(ev.target.id)
     ev.dataTransfer.setData("text", ev.target.id);
   }
 
@@ -35,11 +33,17 @@
   </head>
   <body>
     <div id="container" ondragover="allowDrop(event)" ondrop="drop(event)">
-      <div id="one" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-      <div id="two" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-      <div id="three" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-      <div id="four" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-      <div id="five" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+      <div id='div-1' draggable="true"></div>
+      <div id='div-2' draggable="true"></div>
+      <div id='div-3' draggable="true"></div>
+      <div id='div-4' draggable="true"></div>
     </div>
+    <script>
+      Array.prototype.slice.call(document.querySelectorAll("[draggable]")).forEach(function(item, index) {
+        item.ondragstart = drag
+        item.ondrop = drop
+        item.ondragover = allowDrop
+      });
+    </script>
   </body>
 </html>
