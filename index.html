@@ -12,10 +12,13 @@
   #container {
     width:500px;
     height:500px;
-    border: 5px solid red;
+    border: 5px solid black;
   }
   .green {
     border: 5px solid green !important;
+  }
+  .red {
+    border: 5px solid red !important;
   }
   </style>
   <script>
@@ -74,7 +77,7 @@
   <body>
     <div id="container" ondragover="allowDrop(event)" ondrop="drop(event)">
       <div class='green' draggable="true"></div>
-      <div draggable="true"></div>
+      <div class='red' draggable="true"></div>
       <div draggable="true"></div>
     </div>
     <script>
